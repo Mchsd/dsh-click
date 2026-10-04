@@ -36,7 +36,7 @@ Este plugin faz parte da [família de plugins DSH](https://github.com/PerryLink)
 
 | Superfície | Status |
 |---|---|
-| Harness | DeepSeek Harness `dsh-v0.1.7-rc.2` (tag do GitHub, verificado em 2026-09-25). Verificado em 2026-09-11 contra o checkout master dsh-v0.1.7-alpha.1 (cadeia completa de gates + smoke de instalação de perfil). |
+| Harness | DeepSeek Harness `dsh-v0.2.1-alpha.1` (tag do GitHub, verificado em 2026-09-25). Verificado em 2026-09-11 contra o checkout master dsh-v0.1.7-alpha.1 (cadeia completa de gates + smoke de instalação de perfil). |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Plataformas | **Windows primeiro** (UIAutomation + entrada Win32, via um helper PowerShell embutido); os backends macOS/Linux estão reservados e falham fechado com um motivo claro |
 | Modelo | Modelos somente texto totalmente suportados (`screen_read` retorna texto estruturado); modelos com visão recebem também as imagens do `screen_shot` |

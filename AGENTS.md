@@ -17,6 +17,7 @@ Standalone DeepSeek Harness plugin repository (`dsh-click`). Development follows
 - `src/platform/selection.ts` — `createBackend`: Windows + `ctx.subprocess` → `HelperBackend`; everything else is an unavailable backend that fails closed with a model-readable reason (profiles keep booting everywhere).
 - `native/win32/dsh-click-helper.ps1` — the PowerShell helper: UIAutomation reads and posted input, no foreground stealing, JSON protocol (`HELPER_PROTOCOL_VERSION`).
 - `tests/` — vitest; real Cordis `Context` + real `SessionStore`/`Session`/`ToolRuntime`/`ApprovalService` from the `0.1.7-rc.2` peers; the desktop backend and subprocess are scripted fakes (the subprocess fake is a subclass of the REAL `SubprocessRuntime`), and the helper smoke test runs the real PowerShell helper end to end on Windows only.
+- `scripts/loader-runner.mjs` re-throws the first `FiberState.FAILED` loader row's error. Under `cordis-plugin-loader` `1.0.6-alpha.1` a rejected row no longer fails `loader.await()` (its body only drains `_initTask || fiber.inertia`; cordis's `Fiber._reload()` catches the error and reports it through `ctx.logger.error`, which a sink-less composition swallows) — measured 2026-10-04: without the re-throw the invalid-config / default-export negations in `tests/composition.spec.ts` exited non-zero on the downstream "screen_shot tool is missing from the tools registry" symptom instead of the real reason. `DSH_LOADER_RUNNER_NO_RETHROW=1` disables it for re-measurement only.
 
 ## Hard rules applied here
 
